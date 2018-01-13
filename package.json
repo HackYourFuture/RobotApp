@@ -1,0 +1,13 @@
+{
+  "name": "robotapp",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Jim Cramer <remarcmij@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "json-server": "^0.12.1"
+  },
+  "scripts": {
+    "start": "node server/server.js"
+  }
+}
