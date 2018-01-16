@@ -244,9 +244,9 @@
   }
 
   const app = new RobotApp();
-  const sequence = commands.english.map((command) => {
-    return command.toUpperCase();
-  });
-  app.executeSequence(sequence);
+  // const sequence = commands.english.map((command) => {
+  //   return command.toUpperCase();
+  // });
+  // app.executeSequence(sequence);
 
 })();

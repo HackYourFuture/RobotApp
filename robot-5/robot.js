@@ -174,8 +174,6 @@
     renderBoard();
   }
 
-  renderAll();
-
   function execute(command) {
     console.log('execute: ' + command);
     switch (command) {
@@ -209,12 +207,13 @@
   }
 
   function run() {
-    // const sequence = commands.english.map((command) => {
-    //   return command.toUpperCase();
-    // });
-    // executeSequence(sequence);
+    const sequence = commands.english.map((command) => {
+      return command.toUpperCase();
+    });
+    executeSequence(sequence);
   }
 
+  renderAll();
   run();
 
 })();
