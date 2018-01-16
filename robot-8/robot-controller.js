@@ -55,11 +55,20 @@ class RobotController {
   }
 
   executeInput(text) {
-    const [first, ...rest] = text
+    const commands = text
       .toUpperCase()
       .split(/\s/)
       .map(command => aliases[command] || command);
 
+    this.executeSequence(commands);
+  }
+
+  executeSequence(commands) {
+    if (commands.length === 0) {
+      return;
+    }
+
+    const [first, ...rest] = commands;
     this.execute({ type: first });
 
     if (rest.length > 0) {

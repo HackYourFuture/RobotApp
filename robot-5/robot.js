@@ -1,3 +1,5 @@
+/* global commands */
+
 (function () {
   'use strict';
 
@@ -74,7 +76,6 @@
   }
 
   function renderBoard() {
-    console.log('VIEW  rendering');
     const elem = document.getElementById('board');
     elem.innerHTML = '';
 
@@ -103,7 +104,6 @@
   }
 
   function move() {
-    console.log('executing move()');
     flagReached = false;
     let x = robot.x;
     let y = robot.y;
@@ -126,6 +126,7 @@
     const cell = board[y][x];
 
     if (cell === '.' || cell === 'F' || cell === 'A') {
+      moves += 1;
       board[robot.y][robot.x] = '.';
       robot.x = x;
       robot.y = y;
@@ -144,8 +145,6 @@
       console.log('move blocked by obstacle');
     }
 
-    moves += 1;
-
     renderBoard();
   }
 
@@ -155,7 +154,7 @@
       return;
     }
 
-    console.log('MODEL executing turn()');
+    turns += 1;
 
     switch (robot.dir) {
       case 'up':
@@ -172,10 +171,50 @@
         break;
     }
 
-    turns += 1;
-
     renderBoard();
   }
 
   renderAll();
+
+  function execute(command) {
+    console.log('execute: ' + command);
+    switch (command) {
+      case 'MOVE':
+        move();
+        break;
+      case 'TURN-LEFT':
+        turn('left');
+        break;
+      case 'TURN-RIGHT':
+        turn('right');
+        break;
+      default:
+        this.log('ignoring unexpected command:', command);
+    }
+  }
+
+  function executeSequence(commands) {
+    const queue = commands.slice();
+    if (queue.length === 0) {
+      return;
+    }
+
+    const intervalID = setInterval(() => {
+      const command = queue.shift();
+      execute(command);
+      if (queue.length === 0) {
+        clearInterval(intervalID);
+      }
+    }, 750);
+  }
+
+  function run() {
+    // const sequence = commands.english.map((command) => {
+    //   return command.toUpperCase();
+    // });
+    // executeSequence(sequence);
+  }
+
+  run();
+
 })();
