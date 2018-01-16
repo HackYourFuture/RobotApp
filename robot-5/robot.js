@@ -1,5 +1,3 @@
-/* global commands */
-
 (function () {
   'use strict';
 
@@ -207,7 +205,9 @@
   }
 
   function run() {
-    const sequence = commands.english.map((command) => {
+    const jsonString = document.getElementById('json').innerHTML;
+    const jsonData = JSON.parse(jsonString);
+    const sequence = jsonData.english.map((command) => {
       return command.toUpperCase();
     });
     executeSequence(sequence);

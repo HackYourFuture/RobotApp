@@ -1,4 +1,3 @@
-/* global commands */
 'use strict';
 
 (function () {
@@ -243,10 +242,6 @@
     }
   }
 
-  const app = new RobotApp();
-  // const sequence = commands.english.map((command) => {
-  //   return command.toUpperCase();
-  // });
-  // app.executeSequence(sequence);
+  new RobotApp();
 
 })();

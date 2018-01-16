@@ -10,8 +10,64 @@
 </head>
 
 <body>
-  <div id="root"></div>
-  <script src="commands.js"></script>
+  <div id="container">
+    <pre id="json">
+    {
+      "english": [
+        "move",
+        "turn-right",
+        "move",
+        "move",
+        "move",
+        "turn-left",
+        "move",
+        "move"
+      ],
+      "french": [
+        "avancer",
+        "à droit",
+        "avancer",
+        "avancer",
+        "avancer",
+        "à gauche",
+        "avancer",
+        "avancer"
+      ],
+      "frenchToEnglish": {
+        "avancer": "move",
+        "à droit": "turn-right",
+        "à gauche": "turn-left"
+      },
+      "frenchWithNoise": [
+        "s'il vous plaît",
+        "avancer",
+        "puis",
+        "à droit",
+        "avancer",
+        "avancer",
+        "encore",
+        "avancer",
+        "à gauche",
+        "avancer",
+        "encore",
+        "avancer"
+      ],
+      "englishActions": [
+        { "type": "move" },
+        { "type": "turn-right" },
+        { "type": "move", "repeat": 3 },
+        { "type": "turn-left" },
+        { "type": "move", "repeat": 2 }
+      ],
+      "verbalCommands": [
+        "Move and turn-right, then move, move and move again; next turn-left.",
+        "Finally move and move for a second time.",
+        "You have reached your destination."
+      ]
+    }
+  </pre>
+    <div id="root"></div>
+  </div>
   <script src="robot.js"></script>
 </body>
 
