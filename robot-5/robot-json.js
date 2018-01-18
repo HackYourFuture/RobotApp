@@ -1,4 +1,4 @@
-/* global Robot */
+/* global RobotApp */
 
 (function () {
   'use strict';
@@ -54,7 +54,7 @@
     const sequence = parsedJSON.data.map((command) => {
       return command.toUpperCase();
     });
-    Robot.executeSequence(sequence);
+    RobotApp.executeSequence(sequence);
   }
 
   function executeFrench(parsedJSON) {

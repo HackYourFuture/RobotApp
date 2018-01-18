@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-var, no-unused-vars
-var Robot = {};
+var RobotApp = RobotApp || {};
 
 (function () {
   'use strict';
@@ -210,6 +210,6 @@ var Robot = {};
 
   renderAll();
 
-  Robot.executeSequence = executeSequence;
+  RobotApp.executeSequence = executeSequence;
 
 })();

@@ -108,7 +108,8 @@ Introduces separate files for Model and View.
 
 #### Concepts covered
 
-- Working with separate JavaScript files with a bare minimum of binding via global scope.
+- Working with separate JavaScript files.
+- Namespace pattern
 
 ### robot-8
 
