@@ -1,7 +1,17 @@
-# Homework
+# Robot 5
 
-Initial idea, to be checked:
+The robot understands the following commands (all-uppercase):
 
-1. Write code to execute the `englishActions` commands.
-2. Add code to move the robot back to its starting position and direction.
-3. Add code to extract valid robot commands from `verbalCommands` and execute them.
+- MOVE
+- TURN-LEFT
+- TURN-RIGHT
+
+The JSON data needs to be converted (mapped, filtered) to produce an array of valid robot commands.
+
+- Finish the code for a particular JSON data format ('english', 'french', etc.)
+- Copy and paste the corresponding JSON object element from the left-hand side of the to the text area and press Enter.
+- Reload the page to try again
+
+## Homework
+
+Complete the function `handleVerbal`.

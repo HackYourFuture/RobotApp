@@ -1,5 +1,5 @@
 body {
-  background-color: #6a5f77;
+    background-color: #6a5f77;
 }
 
 #container {
@@ -69,10 +69,31 @@ td.at-flag {
 }
 
 button {
-  margin: 8px 4px;
-  padding: 8px;
-  background-color: #89bd49;
-  color: white;
-  border: none;
-  border-radius: 4px;
+    margin: 8px 4px;
+    padding: 8px;
+    background-color: #89bd49;
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+.json-input {
+    width: 320px;
+    height: 400px;
+    resize: none;
+    margin-top: 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #fff;
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.json-valid {
+    color: green;
+}
+
+.json-error {
+    color: red;
 }

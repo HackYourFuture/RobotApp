@@ -1,3 +1,6 @@
+// eslint-disable-next-line no-var, no-unused-vars
+var Robot = {};
+
 (function () {
   'use strict';
 
@@ -204,16 +207,9 @@
     }, 750);
   }
 
-  function run() {
-    const jsonString = document.getElementById('json').innerHTML;
-    const jsonData = JSON.parse(jsonString);
-    const sequence = jsonData.english.map((command) => {
-      return command.toUpperCase();
-    });
-    executeSequence(sequence);
-  }
 
   renderAll();
-  run();
+
+  Robot.executeSequence = executeSequence;
 
 })();
