@@ -27,7 +27,7 @@ var RobotApp = RobotApp || {};
     }
 
     execute(action) {
-      this.log('CNTRL execute: ' + action);
+      this.log('CNTRL execute: ', action);
       switch (action.type) {
         case 'MOVE':
           this.model.move();
