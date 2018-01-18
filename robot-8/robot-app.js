@@ -1,7 +1,8 @@
-'use strict';
-/* global RobotModel, RobotView, RobotController */
+// eslint-disable-next-line no-var
+var RobotApp = RobotApp || {};
 
 (() => {
+  'use strict';
 
   const LOGGING_ENABLED = true;
 
@@ -25,9 +26,9 @@
     }
   };
 
-  const model = new RobotModel(log);
-  const controller = new RobotController(model, log);
-  new RobotView(model, controller, log);
+  const model = new RobotApp.Model(log);
+  const controller = new RobotApp.Controller(model, log);
+  new RobotApp.View(model, controller, log);
   model.initialize(level);
 
 })();

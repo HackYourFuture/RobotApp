@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-  class RobotModel {
+  class Model {
 
     constructor() {
       this.board = [
@@ -101,7 +101,7 @@
 
   }
 
-  class RobotView {
+  class View {
 
     constructor(model) {
       this.model = model;
@@ -197,8 +197,8 @@
 
   class RobotApp {
     constructor() {
-      this.model = new RobotModel();
-      this.view = new RobotView(this.model);
+      this.model = new Model();
+      this.view = new View(this.model);
     }
 
     executeSequence(commands) {

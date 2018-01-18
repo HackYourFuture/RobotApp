@@ -1,7 +1,8 @@
-'use strict';
-/* global RobotModel, RobotView, RobotController */
+// eslint-disable-next-line no-var
+var RobotApp = RobotApp || {};
 
 (() => {
+  'use strict';
 
   const LOGGING_ENABLED = true;
   const LEVELS_URL = 'http://localhost:3000/api/v1/levels';
@@ -13,12 +14,12 @@
   }
 
   // eslint-disable-next-line no-unused-vars
-  class RobotApp {
+  class Robot {
 
     constructor() {
-      const model = new RobotModel(log);
-      const controller = new RobotController(model, log);
-      new RobotView(model, controller, log);
+      const model = new RobotApp.Model(log);
+      const controller = new RobotApp.Controller(model, log);
+      new RobotApp.View(model, controller, log);
       this.loadLevels(model);
     }
 
@@ -44,6 +45,6 @@
     }
   }
 
-  new RobotApp();
+  new Robot();
 
 })();
