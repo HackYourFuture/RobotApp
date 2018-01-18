@@ -10,8 +10,105 @@
 </head>
 
 <body>
-  <div id="root"></div>
+  <div id="container">
+    <pre id="json">
+  [
+  {
+    "name": "english",
+    "data": [
+      "move",
+      "turn-right",
+      "move",
+      "move",
+      "move",
+      "turn-left",
+      "move",
+      "move"
+    ]
+  },
+  {
+    "name": "french",
+    "data": [
+      "marche",
+      "à droit",
+      "marche",
+      "marche",
+      "marche",
+      "à gauche",
+      "marche",
+      "marche"
+    ],
+    "translations": {
+      "marche": "move",
+      "à droit": "turn-right",
+      "à gauche": "turn-left"
+    }
+  },
+  {
+    "name": "chattyFrench",
+    "data": [
+      "s'il vous plaît",
+      "marche",
+      "puis",
+      "à droit",
+      "marche",
+      "marche",
+      "encore",
+      "marche",
+      "à gauche",
+      "marche",
+      "encore",
+      "marche"
+    ],
+    "translations": {
+      "marche": "move",
+      "à droit": "turn-right",
+      "à gauche": "turn-left",
+      "s'il vous plaît": "please",
+      "puis": "then"
+    }
+  },
+  {
+    "name": "actions",
+    "data": [
+      {
+        "type": "MOVE"
+      },
+      {
+        "type": "TURN-RIGHT"
+      },
+      {
+        "type": "MOVE",
+        "times": 3
+      },
+      {
+        "type": "TURN-LEFT"
+      },
+      {
+        "type": "MOVE",
+        "times": 2
+      }
+    ]
+  },
+  {
+    "name": "shorthand",
+    "data": "MR3ML2M"
+  },
+  {
+    "name": "verbal",
+    "data": [
+      "Move and turn-right, then move, move and move again."
+      "Next turn-left.",
+      "Finally move and move for a second time.",
+      "You have reached your destination."
+    ]
+  }
+]
+    </pre>
+    <div id="root"></div>
+  </div>
   <script src="robot.js"></script>
+  <script src="robot-json.js"></script>
 </body>
 
 </html>

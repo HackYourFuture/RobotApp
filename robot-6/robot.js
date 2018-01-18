@@ -195,7 +195,53 @@
   }
 
 
-  const model = new RobotModel();
-  new RobotView(model);
+  class RobotApp {
+    constructor() {
+      this.model = new RobotModel();
+      this.view = new RobotView(this.model);
+    }
+
+    executeSequence(commands) {
+      const queue = commands.slice();
+      if (queue.length === 0) {
+        return;
+      }
+
+      const intervalID = setInterval(() => {
+        const command = queue.shift();
+        this.execute(command);
+        if (queue.length === 0) {
+          clearInterval(intervalID);
+        }
+      }, 750);
+    }
+
+    execute(command) {
+      console.log('execute: ' + command);
+      switch (command) {
+        case 'MOVE':
+          this.model.move();
+          break;
+        case 'TURN-LEFT':
+          this.model.turn('left');
+          break;
+        case 'TURN-RIGHT':
+          this.model.turn('right');
+          break;
+        default:
+          this.log('ignoring unexpected command:', command);
+      }
+      this.view.renderBoard();
+    }
+
+    run(commands) {
+      const sequence = commands.english.map((command) => {
+        return command.toUpperCase();
+      });
+      this.executeSequence(sequence);
+    }
+  }
+
+  new RobotApp();
 
 })();

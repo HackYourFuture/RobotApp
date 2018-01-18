@@ -1,7 +1,5 @@
 'use strict';
 
-const delay = 750;
-
 const aliases = {
   'M': 'MOVE',
   'RIGHT': 'TURN-RIGHT',
@@ -63,14 +61,22 @@ class RobotController {
     this.execute({ type: first });
 
     if (rest.length > 0) {
-      const intervalID = setInterval(() => {
-        const command = rest.shift();
-        this.execute({ type: command });
-        if (rest.length === 0) {
-          clearInterval(intervalID);
-        }
-      }, delay);
+      this.executeSequence(rest);
     }
   }
 
+  executeSequence(commands) {
+    const queue = commands.slice();
+    if (queue.length === 0) {
+      return;
+    }
+
+    const intervalID = setInterval(() => {
+      const command = queue.shift();
+      this.execute({ type: command });
+      if (queue.length === 0) {
+        clearInterval(intervalID);
+      }
+    }, 750);
+  }
 }
