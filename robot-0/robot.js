@@ -1,6 +1,5 @@
-(function () {
-  'use strict';
-
+'use strict';
+{
   const board = [
     ['T', 'T', '.', 'F'],
     ['T', '.', '.', '.'],
@@ -116,4 +115,4 @@ function move() {
   move();
   // end of robot game instructions
 
-})();
+}

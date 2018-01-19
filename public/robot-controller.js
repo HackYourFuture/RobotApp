@@ -1,8 +1,9 @@
+'use strict';
+
 // eslint-disable-next-line no-var
 var RobotApp = RobotApp || {};
 
-(() => {
-
+{
   const aliases = {
     'M': 'MOVE',
     'RIGHT': 'TURN-RIGHT',
@@ -86,4 +87,4 @@ var RobotApp = RobotApp || {};
 
   RobotApp.Controller = Controller;
 
-})();
+}

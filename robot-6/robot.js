@@ -1,6 +1,5 @@
 'use strict';
-
-(function () {
+{
   class Model {
 
     constructor() {
@@ -244,4 +243,4 @@
 
   new RobotApp();
 
-})();
+}

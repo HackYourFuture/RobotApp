@@ -1,10 +1,10 @@
+'use strict';
+
 // eslint-disable-next-line no-var
 var RobotApp = RobotApp || {};
 
-(() => {
-  'use strict';
-
-  const delay = 750;
+{
+    const delay = 750;
 
   const aliases = {
     'M': 'MOVE',
@@ -89,4 +89,4 @@ var RobotApp = RobotApp || {};
 
   RobotApp.Controller = Controller;
 
-})();
+}

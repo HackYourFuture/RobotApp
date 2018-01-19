@@ -1,9 +1,10 @@
+'use strict';
+
 // eslint-disable-next-line no-var
 var RobotApp = RobotApp || {};
 
-(() => {
-  'use strict';
-
+// eslint-disable-next-line no-var, no-unused-vars
+{
   class View {
 
     constructor(model) {
@@ -98,4 +99,4 @@ var RobotApp = RobotApp || {};
   const model = new RobotApp.Model();
   new View(model);
 
-})();
+}

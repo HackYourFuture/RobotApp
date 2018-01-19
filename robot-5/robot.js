@@ -1,9 +1,8 @@
 // eslint-disable-next-line no-var, no-unused-vars
 var RobotApp = RobotApp || {};
 
-(function () {
-  'use strict';
-
+'use strict';
+{
   const board = [
     ['T', 'T', '.', 'F'],
     ['T', '.', '.', '.'],
@@ -212,4 +211,4 @@ var RobotApp = RobotApp || {};
 
   RobotApp.executeSequence = executeSequence;
 
-})();
+}

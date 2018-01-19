@@ -1,8 +1,8 @@
 /* spell-checker: disable */
 /* eslint-disable no-unused-vars */
 
-(function () {
-
+'use strict';
+{
   const expectedCommands = [
     'MOVE',
     'TURN-RIGHT',
@@ -133,4 +133,4 @@
 
   conversionTest(convertEnglish);
 
-})();
+}

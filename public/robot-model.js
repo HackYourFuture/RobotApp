@@ -1,9 +1,9 @@
+'use strict';
+
 // eslint-disable-next-line no-var
 var RobotApp = RobotApp || {};
 
-(() => {
-  'use strict';
-
+{
   class Model {
 
     constructor(log) {
@@ -159,4 +159,4 @@ var RobotApp = RobotApp || {};
 
   RobotApp.Model = Model;
 
-})();
+}

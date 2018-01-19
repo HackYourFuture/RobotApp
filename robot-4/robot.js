@@ -1,6 +1,5 @@
-(function () {
-  'use strict';
-
+'use strict';
+{
   const board = [
     ['T', 'T', '.', 'F'],
     ['T', '.', '.', '.'],
@@ -160,4 +159,4 @@
   }
 
   renderAll();
-})();
+}
