@@ -14,7 +14,7 @@ executeTimedSequence(commands) {
 
   const intervalID = setInterval(() => {
     const command = queue.shift();
-    this.execute(command);
+    execute(command);
     if (queue.length === 0) {
       clearInterval(intervalID);
     }
