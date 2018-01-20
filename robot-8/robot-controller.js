@@ -4,8 +4,6 @@
 var RobotApp = RobotApp || {};
 
 {
-    const delay = 750;
-
   const aliases = {
     'M': 'MOVE',
     'RIGHT': 'TURN-RIGHT',
@@ -64,10 +62,14 @@ var RobotApp = RobotApp || {};
         .split(/\s/)
         .map(command => aliases[command] || command);
 
-      this.executeSequence(commands);
+      this.executeTimedSequence(commands);
     }
 
-    executeSequence(commands) {
+    /**
+     * Executes an list of robot commands with delays in between
+     * @param {string[]} commands
+     */
+    executeTimedSequence(commands) {
       if (commands.length === 0) {
         return;
       }
@@ -82,7 +84,7 @@ var RobotApp = RobotApp || {};
           if (rest.length === 0) {
             clearInterval(intervalID);
           }
-        }, delay);
+        }, 750);
       }
     }
   }

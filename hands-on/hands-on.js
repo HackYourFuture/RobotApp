@@ -6,7 +6,7 @@
 //    'array-manipulations.js'
 // 2. Copy and paste the contents shown here into both files.
 {
-  const expectedCommands = [
+  const expected = [
     'MOVE',
     'TURN-RIGHT',
     'MOVE',
@@ -76,24 +76,34 @@
    * @param {string[]} actual - The actual produced command array
    * @param {string[]} expected - The expected command array
    */
-  function conversionTest(actual, expected) {
+  function isEqual(actual, expected) {
     console.log('\n--- testing ---');
+    // Assume succes (i.e., arrays are equak)
     let success = true;
-    if (actual.length !== expected.length) {
-      console.log(`expected length: ${expected.length}, actual length: ${actual.length}`);
+    // Ensure that 'actual' and 'expected' arguments are both arrays
+    // and of equal length
+    if (!Array.isArray(actual)) {
+      console.log('ERROR: \'actual\' is not an array');
+      success = false;
+    } else if (!Array.isArray(expected)) {
+      console.log('ERROR: \'expected\' is not an array');
+      success = false;
+    } else if (actual.length !== expected.length) {
+      console.log(`ERROR: expected length: ${expected.length}, actual length: ${actual.length}`);
       success = false;
     } else {
+      // Compare each element of the arrays
       for (let i = 0; i < expected.length; i++) {
         if (actual[i] !== expected[i]) {
-          console.log(`expected: ${expected[i]}, actual: ${actual[i]}`);
+          console.log(`ERROR: expected: ${expected[i]}, actual: ${actual[i]}`);
           success = false;
         }
       }
     }
     if (success) {
-      console.log('test was successful');
+      console.log('>>> test was successful');
     } else {
-      console.log('test failed');
+      console.log('>>> test failed');
     }
     return success;
   }
@@ -114,31 +124,30 @@
   }
 
   /**
+   *
+   * @param {string} command - A command: 'TURN-LEFT', 'TURN-RIGHT' or 'MOVE'
+   */
+  function execute(command) {
+    // Add your code here to : use a switch statement
+    // Call the 'turn()' or 'move()' function depending on the command
+  }
+
+  /**
    * Execute a sequence of robot commands
    * @param {string[]} commands - The robot commands to execute
    */
-  function executeCommands(commands) {
-    // Possible commands:
-    //   'TURN-LEFT'
-    //   'TURN-RIGHT'
-    //   'MOVE'
+  function executeSequence(commands) {
     console.log('\n--- starting execution ---');
-    // Add your code here to : use a switch statement
-    // Call the 'turn()' or 'move()' function depending on the current command
+    // Add your code here to: use a for loop or a forEach method
+    // Call the 'execute()' function for each command
   }
-
 
   /**
    * Convert English commands
-   * @param {*} commands - Command data to convert
+   * @param {*} commands - Command data to convert: use enlishCommanfs
    */
   function convertEnglish(commands) {
-    console.log('convertEnglish');
-    const convertedCommands = [];
-    for (let i = 0; i < commands.length; i++) {
-      convertedCommands.push(commands[i].toUpperCase())
-    }
-    return convertedCommands;
+    // Add your code here
   }
 
   /**
@@ -147,11 +156,12 @@
    */
   function convertFrench() {
     console.log('convertFrench');
-    // Translation French -> English
-    // marche -> move,
-    // à droit -> turn-right,
-    // à gauche -> turn-left,
+    // French -> English
+    // marche -> move
+    // à droit -> turn-right
+    // à gauche -> turn-left
     // Add your code here
+    // Use a switch statement to do the translations
   }
 
   /**
@@ -159,18 +169,21 @@
    * @param {*} commands - Command data to convert: use chattyFrenchCommands
    */
   function convertChattyFrench(commands) {
-    // Translation French -> English
-    // marche -> move,
-    // à droit -> turn-right,
-    // à gauche -> turn-left,
-    // s'il vous plaît -> please,
+    // French -> English
+    // marche -> move
+    // à droit -> turn-right
+    // à gauche -> turn-left
+    // s'il vous plaît -> please
     // puis -> then
     // Add your code here
+    // Define an object with the translation mappings
+    // Use a loop or '.map()' and '.filter()' methods to do
+    // the conversions
   }
 
   /**
    * Convert actionCommands array
-   * @param {*} commands - Command data to convert: use actioCommands
+   * @param {*} commands - Command data to convert: use actionCommands
    */
   function convertActions(commands) {
     // Add your code here
@@ -192,12 +205,23 @@
     // Add your code here
   }
 
+  const sampleCommands = [
+    'MOVE',
+    'TURN-RIGHT',
+    'MOVE',
+    'MOVE',
+    'MOVE',
+    'TURN-LEFT',
+    'MOVE',
+    'MOVE'
+  ];
+
   /**
    * Test your converters here
    */
-  const convertedCommands = convertEnglish(englishCommands);
-  if (conversionTest(convertedCommands, expectedCommands)) {
-    executeCommands(convertedCommands);
+  const actual = sampleCommands;
+  if (isEqual(actual, expected)) {
+    executeSequence(actual);
   }
 
 }
