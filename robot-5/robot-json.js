@@ -1,8 +1,8 @@
 /* global RobotApp */
+/* eslint-disable no-unused-vars */
 
-(function () {
-  'use strict';
-
+'use strict';
+{
   function renderTextArea() {
     const textArea = document.createElement('textarea');
     textArea.classList.add('json-input');
@@ -79,4 +79,4 @@
 
   renderTextArea();
 
-})();
+}

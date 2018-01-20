@@ -1,9 +1,9 @@
+'use strict';
+
 // eslint-disable-next-line no-var
 var RobotApp = RobotApp || {};
 
-(() => {
-  'use strict';
-
+{
   const LOGGING_ENABLED = true;
   const LEVELS_URL = 'http://localhost:3000/api/v1/levels';
 
@@ -47,4 +47,4 @@ var RobotApp = RobotApp || {};
 
   new Robot();
 
-})();
+}

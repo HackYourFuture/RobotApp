@@ -1,5 +1,5 @@
-(function () {
-  'use strict';
+'use strict';
+{
 
   const board = [
     ['T', 'T', '.', 'F'],
@@ -29,4 +29,4 @@
   }
 
   render();
-})();
+}

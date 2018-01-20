@@ -1,8 +1,9 @@
+'use strict';
+
 // eslint-disable-next-line no-var
 var RobotApp = RobotApp || {};
 
-(() => {
-
+{
   const aliases = {
     'M': 'MOVE',
     'RIGHT': 'TURN-RIGHT',
@@ -27,7 +28,7 @@ var RobotApp = RobotApp || {};
     }
 
     execute(action) {
-      this.log('CNTRL execute: ' + action);
+      this.log('CNTRL execute: ', action);
       switch (action.type) {
         case 'MOVE':
           this.model.move();
@@ -86,4 +87,4 @@ var RobotApp = RobotApp || {};
 
   RobotApp.Controller = Controller;
 
-})();
+}
