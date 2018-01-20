@@ -1,11 +1,10 @@
 /* spell-checker: disable */
+'use strict';
 /* eslint-disable no-unused-vars */
 
 // 1. Create two empty .js files, named 'loops.js' and
 //    'array-manipulations.js'
 // 2. Copy and paste the contents shown here into both files.
-
-'use strict';
 {
   const expectedCommands = [
     'MOVE',
@@ -78,6 +77,7 @@
    * @param {string[]} expected - The expected command array
    */
   function conversionTest(actual, expected) {
+    console.log('\n--- testing ---');
     let success = true;
     if (actual.length !== expected.length) {
       console.log(`expected length: ${expected.length}, actual length: ${actual.length}`);
@@ -122,24 +122,31 @@
     //   'TURN-LEFT'
     //   'TURN-RIGHT'
     //   'MOVE'
-    // Add your code here: use a switch statement
+    console.log('\n--- starting execution ---');
+    // Add your code here to : use a switch statement
+    // Call the 'turn()' or 'move()' function depending on the current command
   }
 
+
   /**
-   * Example implementation of a converter function
+   * Convert English commands
+   * @param {*} commands - Command data to convert
    */
-  function convertEnglish() {
+  function convertEnglish(commands) {
+    console.log('convertEnglish');
     const convertedCommands = [];
-    for (let i = 0; i < englishCommands.length; i++) {
-      convertedCommands.push(englishCommands[i].toUpperCase())
+    for (let i = 0; i < commands.length; i++) {
+      convertedCommands.push(commands[i].toUpperCase())
     }
     return convertedCommands;
   }
 
   /**
    * Convert frenchCommands array
+   * @param {*} commands - Command data to convert: use frenchCommands
    */
   function convertFrench() {
+    console.log('convertFrench');
     // Translation French -> English
     // marche -> move,
     // à droit -> turn-right,
@@ -149,8 +156,9 @@
 
   /**
    * Convert chattyFrenchCommands array
+   * @param {*} commands - Command data to convert: use chattyFrenchCommands
    */
-  function convertChattyFrench() {
+  function convertChattyFrench(commands) {
     // Translation French -> English
     // marche -> move,
     // à droit -> turn-right,
@@ -162,29 +170,32 @@
 
   /**
    * Convert actionCommands array
+   * @param {*} commands - Command data to convert: use actioCommands
    */
-  function convertActions() {
+  function convertActions(commands) {
     // Add your code here
   }
 
   /**
    * Convert shorthandCommands string
+   * @param {*} commands - Command data to convert: use shorthandCommands
    */
-  function convertShorthand() {
+  function convertShorthand(commands) {
     // Add your code here
   }
 
   /**
    * Convert verbalCommands array
+   * @param {*} commands - Command data to convert: use verbalCommands
    */
-  function convertVerbal() {
+  function convertVerbal(commands) {
     // Add your code here
   }
 
   /**
    * Test your converters here
    */
-  const convertedCommands = convertEnglish();
+  const convertedCommands = convertEnglish(englishCommands);
   if (conversionTest(convertedCommands, expectedCommands)) {
     executeCommands(convertedCommands);
   }
