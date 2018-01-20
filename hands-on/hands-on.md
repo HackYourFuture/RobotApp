@@ -78,7 +78,7 @@ This function takes a string array of valid robot commands and calls `execute()`
 
 ### Exercise 3 - convertEnglish function
 
-Complete the `convertEnglish` function. This function should be called with the `englishCommands` array as its argument and convert the array to standard robot commands.
+Complete the `convertEnglish` function. This function should be called with the `englishCommands` array as its argument and return an array with standard robot commands.
 
 ```js
 const englishCommands = [
@@ -96,7 +96,7 @@ const englishCommands = [
 
 /**
  * Convert English commands
- * @param {*} commands - Command data to convert: use enlishCommanfs
+ * @param {*} commands - Command data to convert: use enlishCommands
  */
 function convertEnglish(commands) {
   // Add your code here
@@ -107,8 +107,13 @@ Test the `convertEnglish` function with this code (near the bottom of the file):
 
 ```js
 const actual = convertEnglish(englishCommands);
+
+console.log('\n--- testing ---');
 if (isEqual(actual, expected)) {
+  console.log('>>> test was successful');
   executeSequence(actual);
+} else {
+  console.error('>>> test failed');
 }
 ```
 

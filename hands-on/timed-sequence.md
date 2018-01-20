@@ -2,7 +2,7 @@
 
 ```js
 /**
- * Executes an list of robot commands with delays in between
+ * Executes a list of robot commands with delays in between
  * @param {string[]} commands
  */
 executeTimedSequence(commands) {

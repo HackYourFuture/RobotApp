@@ -2,9 +2,6 @@
 'use strict';
 /* eslint-disable no-unused-vars */
 
-// 1. Create two empty .js files, named 'loops.js' and
-//    'array-manipulations.js'
-// 2. Copy and paste the contents shown here into both files.
 {
   const expected = [
     'MOVE',
@@ -72,41 +69,37 @@
   ];
 
   /**
-   * Test the actual output of a converter against the expected output
-   * @param {string[]} actual - The actual produced command array
-   * @param {string[]} expected - The expected command array
+   * Compare two arrays for equality
+   * @param {string[]} actual - The array to be tested
+   * @param {string[]} expected - The expected array
    */
   function isEqual(actual, expected) {
-    console.log('\n--- testing ---');
-    // Assume succes (i.e., arrays are equak)
-    let success = true;
     // Ensure that 'actual' and 'expected' arguments are both arrays
     // and of equal length
     if (!Array.isArray(actual)) {
-      console.log('ERROR: \'actual\' is not an array');
-      success = false;
-    } else if (!Array.isArray(expected)) {
-      console.log('ERROR: \'expected\' is not an array');
-      success = false;
-    } else if (actual.length !== expected.length) {
-      console.log(`ERROR: expected length: ${expected.length}, actual length: ${actual.length}`);
-      success = false;
-    } else {
-      // Compare each element of the arrays
-      for (let i = 0; i < expected.length; i++) {
-        if (actual[i] !== expected[i]) {
-          console.log(`ERROR: expected: ${expected[i]}, actual: ${actual[i]}`);
-          success = false;
-        }
+      console.error('ERROR: \'actual\' is not an array');
+      return false;
+    }
+    if (!Array.isArray(expected)) {
+      console.error('ERROR: \'expected\' is not an array');
+      return false;
+    }
+    if (actual.length !== expected.length) {
+      console.error(`ERROR: expected length: ${expected.length}, actual length: ${actual.length}`);
+      return false;
+    }
+
+    // Compare each element of the arrays
+    for (let i = 0; i < expected.length; i++) {
+      if (actual[i] !== expected[i]) {
+        console.error(`ERROR: expected: ${expected[i]}, actual: ${actual[i]}`);
+        return false;
       }
     }
-    if (success) {
-      console.log('>>> test was successful');
-    } else {
-      console.log('>>> test failed');
-    }
-    return success;
+
+    return true;
   }
+
 
   /**
    * Simulates the robot 'turn' function
@@ -220,8 +213,12 @@
    * Test your converters here
    */
   const actual = sampleCommands;
-  if (isEqual(actual, expected)) {
-    executeSequence(actual);
-  }
 
+  console.log('\n--- testing ---');
+  if (isEqual(actual, expected)) {
+    console.log('>>> test was successful');
+    executeSequence(actual);
+  } else {
+    console.error('>>> test failed');
+  }
 }
