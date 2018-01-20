@@ -10,17 +10,14 @@ executeTimedSequence(commands) {
     return;
   }
 
-  const [first, ...rest] = commands;
-  this.execute({ type: first });
+  const queue = commands.slice();
 
-  if (rest.length > 0) {
-    const intervalID = setInterval(() => {
-      const command = rest.shift();
-      this.execute({ type: command });
-      if (rest.length === 0) {
-        clearInterval(intervalID);
-      }
-    }, 750);
-  }
+  const intervalID = setInterval(() => {
+    const command = queue.shift();
+    this.execute(command);
+    if (queue.length === 0) {
+      clearInterval(intervalID);
+    }
+  }, 750);
 }
 ```
