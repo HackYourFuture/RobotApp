@@ -1,5 +1,5 @@
-/* spell-checker: disable */
 'use strict';
+/* spell-checker: disable */
 /* eslint-disable no-unused-vars */
 
 {
