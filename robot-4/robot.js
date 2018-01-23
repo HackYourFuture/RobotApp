@@ -27,7 +27,6 @@
   function renderAll() {
     board.reverse();
     const root = document.getElementById('root');
-    root.innerHTML = '';
     renderToolbar(root);
     renderBoardContainer(root);
     renderBoard();

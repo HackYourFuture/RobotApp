@@ -4,7 +4,7 @@
 var RobotApp = RobotApp || {};
 
 {
-    class Model {
+  class Model {
 
     constructor(log) {
       this.log = log;

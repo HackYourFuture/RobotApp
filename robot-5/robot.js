@@ -187,7 +187,7 @@ var RobotApp = RobotApp || {};
         turn('right');
         break;
       default:
-        this.log('ignoring unexpected command:', command);
+        console.error('ERROR: unexpected command:', command);
     }
   }
 

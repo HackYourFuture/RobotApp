@@ -1,5 +1,5 @@
 body {
-  background-color: #6a5f77;
+    background-color: #6a5f77;
 }
 
 #root {
@@ -57,10 +57,10 @@ td.at-flag {
 }
 
 button {
-  margin: 8px 4px;
-  padding: 0px 8px;
-  background-color: #89bd49;
-  color: white;
-  border: none;
-  border-radius: 4px;
+    margin: 8px 4px;
+    padding: 8px;
+    background-color: #89bd49;
+    color: white;
+    border: none;
+    border-radius: 4px;
 }

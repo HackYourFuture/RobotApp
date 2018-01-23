@@ -1,82 +1,61 @@
-/* global RobotApp */
-/* eslint-disable no-unused-vars */
-
+/* eslint-disable no-unused-vars, no-var */
 'use strict';
+
+var RobotApp = RobotApp || {};
+
 {
-  function renderTextArea() {
+  function render() {
+    const root = document.getElementById('root');
+    renderTitle(root);
+    const form = renderForm(root);
+    renderTextArea(form);
+    renderSubmitButton(form);
+  }
+
+  function renderTitle(root) {
+    const h2 = document.createElement('h2');
+    h2.innerHTML = 'Paste your JSON here:';
+    h2.classList.add('json-title');
+    root.appendChild(h2);
+  }
+
+  function renderForm(root) {
+    const form = document.createElement('form');
+    root.appendChild(form);
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const jsonData = form['json-data'].value.trim();
+      if (jsonData) {
+        executeJSON(form['json-data'].value);
+      }
+    });
+    return form;
+  }
+
+  function renderTextArea(form) {
     const textArea = document.createElement('textarea');
     textArea.classList.add('json-input');
-    textArea.addEventListener('keypress', (event) => {
-      if (event.key === 'Enter') {
-        executeJSON(textArea);
-      }
-    });
-    textArea.addEventListener('change', () => {
-      textArea.classList.remove('json-valid', 'json-error');
-    });
-    const root = document.getElementById('root');
-    root.appendChild(textArea);
+    textArea.setAttribute('type', 'submit');
+    textArea.setAttribute('name', 'json-data');
+    form.appendChild(textArea);
   }
 
-  function executeJSON(textArea) {
-    try {
-      const parsedJSON = JSON.parse(textArea.value);
-      textArea.classList.add('json-valid');
-      switch (parsedJSON.name) {
-        case 'english':
-          handleEnglish(parsedJSON);
-          break;
-        case 'french':
-          executeFrench(parsedJSON);
-          break;
-        case 'chattyFrench':
-          handleChattyFrench(parsedJSON);
-          break;
-        case 'actions':
-          handleActions(parsedJSON);
-          break;
-        case 'shorthand':
-          executeShorthand(parsedJSON);
-          break;
-        case 'verbal':
-          handleVerbal(parsedJSON);
-          break;
-        default:
-          console.log('don\'t now how to handle: ' + parsedJSON.name);
-      }
-    }
-    catch (error) {
-      textArea.classList.add('json-error');
-    }
+  function renderSubmitButton(form) {
+    const submitButton = document.createElement('button');
+    form.appendChild(submitButton);
+    submitButton.setAttribute('type', 'submit');
+    submitButton.classList.add('submit-btn');
+    submitButton.innerHTML = 'SUBMIT';
   }
 
-  function handleEnglish(parsedJSON) {
-    const sequence = parsedJSON.data.map((command) => {
+  // Modify this function for the various types of JSON data
+  function executeJSON(jsonData) {
+    const parsedJSON = JSON.parse(jsonData);
+    const sequence = parsedJSON.commands.map((command) => {
       return command.toUpperCase();
     });
     RobotApp.executeSequence(sequence);
   }
 
-  function executeFrench(parsedJSON) {
-
-  }
-
-  function handleChattyFrench(parsedJSON) {
-
-  }
-
-  function handleActions(parsedJSON) {
-
-  }
-
-  function executeShorthand(parsedJSON) {
-
-  }
-
-  function handleVerbal(parsedJSON) {
-
-  }
-
-  renderTextArea();
-
+  render();
 }
