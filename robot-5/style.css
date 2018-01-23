@@ -1,17 +1,11 @@
 body {
     background-color: #6a5f77;
+    font-family: 'Roboto', sans-serif;
 }
 
 #container {
     display: flex;
     flex-direction: row;
-}
-
-#json {
-    padding: 16px 16px 16px 0;
-    border: none;
-    border-radius: 4px;
-    background-color: #fff;
 }
 
 #root {
@@ -77,17 +71,31 @@ button {
     border-radius: 4px;
 }
 
+.json-title {
+    color: yellow;
+    margin-top: 32px;
+    text-shadow: 1px 1px 3px black;
+}
+
+.json-data {
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #fff;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 14px;
+}
+
 .json-input {
     width: 320px;
-    height: 400px;
+    height: 320px;
     resize: none;
     margin-top: 16px;
     border: none;
     border-radius: 4px;
     background-color: #fff;
-    font-family: monospace;
-    font-weight: bold;
-    font-size: 12px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 14px;
 }
 
 .json-valid {
@@ -96,4 +104,8 @@ button {
 
 .json-error {
     color: red;
+}
+
+.submit-btn {
+    display: block;
 }

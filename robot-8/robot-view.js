@@ -28,62 +28,103 @@ var RobotApp = RobotApp || {};
 
     renderAll() {
       const root = document.getElementById('root');
-      this.renderToolbar(root);
-      this.renderBoardContainer(root);
+      this.renderLeftPanel(root);
+      this.renderRightPanel(root);
     }
 
-    renderToolbar(root) {
+    renderLeftPanel(root) {
+      const form = this.renderForm(root);
+      const textArea = this.renderTextArea(form);
+      this.renderLeftToolbar(form, textArea);
+    }
+
+    renderForm(root) {
+      const form = document.createElement('form');
+      root.appendChild(form);
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const text = form['json-data'].value.trim();
+        if (text) {
+          this.handleInput(text);
+        }
+      });
+      return form;
+    }
+
+    renderTextArea(parent) {
+      const textArea = document.createElement('textarea');
+      textArea.classList.add('json-input');
+      textArea.setAttribute('name', 'json-data');
+      parent.appendChild(textArea);
+      return textArea;
+    }
+
+    renderLeftToolbar(parent, textArea) {
       const toolbar = document.createElement('div');
-      toolbar.setAttribute('id', 'toolbar');
-      root.appendChild(toolbar);
-      this.appendButton(toolbar, 'TURN-LEFT');
-      this.appendButton(toolbar, 'MOVE');
-      this.appendButton(toolbar, 'TURN-RIGHT');
-      this.appendInputField(toolbar);
-      this.appendButton(toolbar, 'RESET');
+      toolbar.classList.add('toolbar');
+      parent.appendChild(toolbar);
+      this.addClearButton(toolbar, textArea);
+      this.addSubmitButton(toolbar);
     }
 
-    appendButton(toolbar, actionType) {
+    addClearButton(parent, textArea) {
+      const button = document.createElement('button');
+      parent.appendChild(button);
+      button.setAttribute('type', 'button');
+      button.innerHTML = 'CLEAR';
+      button.addEventListener('click', () => {
+        textArea.value = '';
+        textArea.focus();
+      });
+    }
+
+    addSubmitButton(parent) {
+      const button = document.createElement('button');
+      parent.appendChild(button);
+      button.setAttribute('type', 'submit');
+      button.innerHTML = 'SUBMIT';
+    }
+
+    renderRightPanel(root) {
+      const panel = document.createElement('div');
+      root.appendChild(panel);
+      panel.classList.add('right-panel');
+      this.renderRightToolbar(panel);
+      this.renderBoardContainer(panel);
+    }
+
+    renderRightToolbar(parent) {
+      const toolbar = document.createElement('div');
+      toolbar.classList.add('toolbar');
+      parent.appendChild(toolbar);
+      this.addToolbarButton(toolbar, 'TURN-LEFT');
+      this.addToolbarButton(toolbar, 'MOVE');
+      this.addToolbarButton(toolbar, 'TURN-RIGHT');
+      this.addToolbarButton(toolbar, 'RESET');
+    }
+
+    addToolbarButton(parent, actionType) {
       const button = document.createElement('button');
       button.innerHTML = actionType;
       button.addEventListener('click', () => {
         this.log('VIEW  button pressed: ' + actionType);
         this.controller.execute({ type: actionType });
       });
-      toolbar.appendChild(button);
+      parent.appendChild(button);
     }
 
-    appendInputField(toolbar) {
-      const input = document.createElement('input');
-      toolbar.appendChild(input);
-      input.setAttribute('name', 'input');
-      input.setAttribute('type', 'text');
-      input.addEventListener('keyup', event => {
-        if (event.key === 'Enter') {
-          event.preventDefault();
-          this.handleInput(input);
-        }
-      });
-
-      const button = document.createElement('button');
-      toolbar.appendChild(button);
-      const label = document.createTextNode('EXECUTE');
-      button.appendChild(label);
-      button.addEventListener('click', () => this.handleInput(input));
-    }
-
-    handleInput(input) {
+    handleInput(text) {
       this.log('VIEW  input');
       this.controller.execute({
-        type: 'INPUT',
-        payload: input.value.trim()
+        type: 'SUBMIT',
+        payload: text
       });
     }
 
-    renderBoardContainer(root) {
+    renderBoardContainer(parent) {
       const board = document.createElement('div');
       board.setAttribute('id', 'board');
-      root.appendChild(board);
+      parent.appendChild(board);
     }
 
     update() {

@@ -3,7 +3,6 @@
 // eslint-disable-next-line no-var
 var RobotApp = RobotApp || {};
 
-// eslint-disable-next-line no-var, no-unused-vars
 {
   class View {
 

@@ -4,7 +4,6 @@
 var RobotApp = RobotApp || {};
 
 {
-
   const LOGGING_ENABLED = true;
 
   function log(...args) {
@@ -31,5 +30,4 @@ var RobotApp = RobotApp || {};
   const controller = new RobotApp.Controller(model, log);
   new RobotApp.View(model, controller, log);
   model.initialize(level);
-
 }

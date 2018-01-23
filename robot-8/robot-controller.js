@@ -5,17 +5,16 @@ var RobotApp = RobotApp || {};
 
 {
   const aliases = {
-    'M': 'MOVE',
-    'RIGHT': 'TURN-RIGHT',
-    'R': 'TURN-RIGHT',
-    'LEFT': 'TURN-LEFT',
-    'L': 'TURN-LEFT',
-    'P': 'PICK-UP',
-    'PICKUP': 'PICKUP',
-    'U': 'UNLOCK'
+    'MOVE()': 'MOVE',
+    'TURN(\'LEFT\')': 'TURN-LEFT',
+    'TURN("LEFT")': 'TURN-LEFT',
+    'TURN(\'RIGHT\')': 'TURN-RIGHT',
+    'TURN("RIGHT")': 'TURN-RIGHT',
+    'PICKUP()': 'PICKUP',
+    'PICKUP': 'PICK-UP',
+    'UNLOCK()': 'UNLOCK'
   };
 
-  // eslint-disable-next-line no-unused-vars
   class Controller {
 
     constructor(model, log) {
@@ -28,7 +27,7 @@ var RobotApp = RobotApp || {};
     }
 
     execute(action) {
-      this.log('CNTRL execute: ' + action);
+      this.log('CNTRL execute: ' + action.type);
       switch (action.type) {
         case 'MOVE':
           this.model.move();
@@ -45,7 +44,7 @@ var RobotApp = RobotApp || {};
         case 'UNLOCK':
           this.model.unlock();
           break;
-        case 'INPUT':
+        case 'SUBMIT':
           this.executeInput(action.payload);
           break;
         case 'RESET':
@@ -56,36 +55,37 @@ var RobotApp = RobotApp || {};
       }
     }
 
-    executeInput(text) {
-      const commands = text
+    executeInput(payload) {
+      const commands = payload
         .toUpperCase()
-        .split(/\s/)
+        .split(/[;\s]+/)
+        .map(command => command.trim())
+        .filter(command => command !== '')
         .map(command => aliases[command] || command);
 
-      this.executeTimedSequence(commands);
+        this.executeTimedSequence(commands);
     }
 
-/**
- * Executes an list of robot commands with delays in between
- * @param {string[]} commands
- */
-executeTimedSequence(commands) {
-  if (commands.length === 0) {
-    return;
+    /**
+     * Executes an list of robot commands with delays in between
+     * @param {string[]} commands
+     */
+    executeTimedSequence(commands) {
+      if (commands.length === 0) {
+        return;
+      }
+
+      const queue = commands.slice();
+
+      const intervalID = setInterval(() => {
+        const command = queue.shift();
+        this.execute({ type: command });
+        if (queue.length === 0) {
+          clearInterval(intervalID);
+        }
+      }, 750);
+    }
   }
 
-  const queue = commands.slice();
-
-  const intervalID = setInterval(() => {
-    const command = queue.shift();
-    this.execute({ type: command });
-    if (queue.length === 0) {
-      clearInterval(intervalID);
-    }
-  }, 750);
-}
-}
-
   RobotApp.Controller = Controller;
-
 }
