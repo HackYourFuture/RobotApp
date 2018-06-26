@@ -1,10 +1,21 @@
 'use strict';
 
-// eslint-disable-next-line no-var
-var RobotApp = RobotApp || {};
-
 {
-  class View {
+  function createAndAppend(name, parent, options = {}) {
+    const elem = document.createElement(name);
+    parent.appendChild(elem);
+    Object.keys(options).forEach((key) => {
+      const value = options[key];
+      if (key === 'text') {
+        elem.innerText = value;
+      } else {
+        elem.setAttribute(key, value);
+      }
+    });
+    return elem;
+  }
+
+  class RobotView {
 
     constructor(model, controller, log) {
       this.imageMap = {
@@ -38,8 +49,7 @@ var RobotApp = RobotApp || {};
     }
 
     renderForm(root) {
-      const form = document.createElement('form');
-      root.appendChild(form);
+      const form = createAndAppend('form', root);
       form.addEventListener('submit', (event) => {
         event.preventDefault();
         const text = form['json-data'].value.trim();
@@ -51,26 +61,20 @@ var RobotApp = RobotApp || {};
     }
 
     renderTextArea(parent) {
-      const textArea = document.createElement('textarea');
-      textArea.classList.add('json-input');
-      textArea.setAttribute('name', 'json-data');
-      parent.appendChild(textArea);
-      return textArea;
+      return createAndAppend('textarea', parent, {
+        class: 'json-input',
+        name: 'json-data'
+      });
     }
 
     renderLeftToolbar(parent, textArea) {
-      const toolbar = document.createElement('div');
-      toolbar.classList.add('toolbar');
-      parent.appendChild(toolbar);
+      const toolbar = createAndAppend('div', parent, { class: 'toolbar' });
       this.addClearButton(toolbar, textArea);
       this.addSubmitButton(toolbar);
     }
 
     addClearButton(parent, textArea) {
-      const button = document.createElement('button');
-      parent.appendChild(button);
-      button.setAttribute('type', 'button');
-      button.innerHTML = 'CLEAR';
+      const button = createAndAppend('button', parent, { type: 'button', text: 'CLEAR' });
       button.addEventListener('click', () => {
         textArea.value = '';
         textArea.focus();
@@ -78,24 +82,17 @@ var RobotApp = RobotApp || {};
     }
 
     addSubmitButton(parent) {
-      const button = document.createElement('button');
-      parent.appendChild(button);
-      button.setAttribute('type', 'submit');
-      button.innerHTML = 'SUBMIT';
+      createAndAppend('button', parent, { type: 'submit', text: 'SUBMIT' });
     }
 
     renderRightPanel(root) {
-      const panel = document.createElement('div');
-      root.appendChild(panel);
-      panel.classList.add('right-panel');
+      const panel = createAndAppend('div', root, { class: 'right-panel' });
       this.renderRightToolbar(panel);
       this.renderBoardContainer(panel);
     }
 
     renderRightToolbar(parent) {
-      const toolbar = document.createElement('div');
-      toolbar.classList.add('toolbar');
-      parent.appendChild(toolbar);
+      const toolbar = createAndAppend('div', parent, { class: 'toolbar' });
       this.appendSelect(toolbar);
       this.appendButton(toolbar, 'TURN-LEFT');
       this.appendButton(toolbar, 'MOVE');
@@ -104,22 +101,18 @@ var RobotApp = RobotApp || {};
     }
 
     appendSelect(parent) {
-      const select = document.createElement('select');
-      select.setAttribute('id', 'levels');
-      parent.appendChild(select);
+      const select = createAndAppend('select', parent, { id: 'levels' });
       select.addEventListener('change', event => {
         this.controller.selectLevel(+event.target.value);
       });
     }
 
     appendButton(parent, actionType) {
-      const button = document.createElement('button');
-      button.innerHTML = actionType;
+      const button = createAndAppend('button', parent, { text: actionType });
       button.addEventListener('click', () => {
         this.log('VIEW  button pressed: ' + actionType);
         this.controller.execute({ type: actionType });
       });
-      parent.appendChild(button);
     }
 
     handleInput(text) {
@@ -131,8 +124,7 @@ var RobotApp = RobotApp || {};
     }
 
     renderBoardContainer(parent) {
-      const board = document.createElement('div');
-      board.setAttribute('id', 'board');
+      const board = createAndAppend('div', parent, { id: 'board' });
       parent.appendChild(board);
     }
 
@@ -153,10 +145,7 @@ var RobotApp = RobotApp || {};
       const select = document.getElementById('levels');
       select.innerHTML = '';
       this.model.levels.forEach(level => {
-        const option = document.createElement('option');
-        option.setAttribute('value', level.id);
-        option.innerHTML = level.title;
-        select.appendChild(option);
+        createAndAppend('option', select, { value: level.id, text: level.title });
       });
     }
 
@@ -164,15 +153,11 @@ var RobotApp = RobotApp || {};
       this.log('VIEW  rendering');
       const board = document.getElementById('board');
       board.innerHTML = '';
-      const table = document.createElement('table');
-      board.appendChild(table);
+      const table = createAndAppend('table', board);
       for (let row = this.model.board.length - 1; row >= 0; row--) {
         const cells = this.model.board[row];
-        const tr = document.createElement('tr');
-        table.appendChild(tr);
-        let rowHtml = '';
+        const tr = createAndAppend('tr', table);
         for (const cell of cells) {
-          const img = this.imageMap[cell];
           let className = '';
           if (cell === 'R') {
             className = this.model.robot.dir;
@@ -180,15 +165,15 @@ var RobotApp = RobotApp || {};
               className += ' at-flag';
             }
           }
-          const imgHtml = img ? `<img src="img/${img}" width="35" height="35">` : '';
-          rowHtml += `<td class="${className}">${imgHtml}</td>`;
+          const td = createAndAppend('td', tr, { class: className });
+          const imageSrc = this.imageMap[cell];
+          if (imageSrc) {
+            createAndAppend('img', td, { src: `img/${imageSrc}`, width: 35, height: 35 });
+          }
         }
-        tr.innerHTML = rowHtml;
       }
     }
-
   }
 
-  RobotApp.View = View;
-
+  window.RobotView = RobotView;
 }

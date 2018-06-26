@@ -1,7 +1,5 @@
+/* global RobotModel, RobotView, RobotController */
 'use strict';
-
-// eslint-disable-next-line no-var
-var RobotApp = RobotApp || {};
 
 {
   const LOGGING_ENABLED = true;
@@ -13,19 +11,18 @@ var RobotApp = RobotApp || {};
     }
   }
 
-  // eslint-disable-next-line no-unused-vars
   class Robot {
 
     constructor() {
-      const model = new RobotApp.Model(log);
-      const controller = new RobotApp.Controller(model, log);
-      new RobotApp.View(model, controller, log);
+      const model = new RobotModel(log);
+      const controller = new RobotController(model, log);
+      new RobotView(model, controller, log);
       this.loadLevels(model);
     }
 
     loadLevels(model) {
       this.fetchJSON(LEVELS_URL)
-      .then(levels => model.storeLevels(levels));
+        .then(levels => model.storeLevels(levels));
     }
 
     fetchJSON(url) {
@@ -45,6 +42,5 @@ var RobotApp = RobotApp || {};
     }
   }
 
-  new Robot();
-
+  window.onload = () => new Robot();
 }

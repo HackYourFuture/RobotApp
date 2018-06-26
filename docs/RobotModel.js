@@ -1,10 +1,7 @@
 'use strict';
 
-// eslint-disable-next-line no-var
-var RobotApp = RobotApp || {};
-
 {
-  class Model {
+  class RobotModel {
 
     constructor(log) {
       this.log = log;
@@ -86,25 +83,31 @@ var RobotApp = RobotApp || {};
     }
 
     turn(turnDirection) {
-      if (turnDirection !== 'left' && turnDirection !== 'right') {
-        this.log('MODEL ignoring invalid turn', turnDirection);
-        return;
+      let isLeftTurn;
+      switch (turnDirection) {
+        case 'left':
+          isLeftTurn = true;
+          break;
+        case 'right':
+          isLeftTurn = false;
+          break;
+        default:
+          console.error('ignoring invalid turn', turnDirection);
+          return;
       }
-
-      this.log('MODEL executing turn()');
 
       switch (this.robot.dir) {
         case 'up':
-          this.robot.dir = turnDirection === 'left' ? 'left' : 'right';
+          this.robot.dir = isLeftTurn ? 'left' : 'right';
           break;
         case 'down':
-          this.robot.dir = turnDirection === 'left' ? 'right' : 'left';
+          this.robot.dir = isLeftTurn ? 'right' : 'left';
           break;
         case 'left':
-          this.robot.dir = turnDirection === 'left' ? 'down' : 'up';
+          this.robot.dir = isLeftTurn ? 'down' : 'up';
           break;
         case 'right':
-          this.robot.dir = turnDirection === 'left' ? 'up' : 'down';
+          this.robot.dir = isLeftTurn ? 'up' : 'down';
           break;
       }
 
@@ -157,6 +160,5 @@ var RobotApp = RobotApp || {};
     }
   }
 
-  RobotApp.Model = Model;
-
+  window.RobotModel = RobotModel;
 }

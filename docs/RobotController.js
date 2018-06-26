@@ -1,8 +1,5 @@
 'use strict';
 
-// eslint-disable-next-line no-var
-var RobotApp = RobotApp || {};
-
 {
   const aliases = {
     'MOVE()': 'MOVE',
@@ -15,7 +12,7 @@ var RobotApp = RobotApp || {};
     'UNLOCK()': 'UNLOCK'
   };
 
-  class Controller {
+  class RobotController {
 
     constructor(model, log) {
       this.model = model;
@@ -63,7 +60,7 @@ var RobotApp = RobotApp || {};
         .filter(command => command !== '')
         .map(command => aliases[command] || command);
 
-        this.executeTimedSequence(commands);
+      this.executeTimedSequence(commands);
     }
 
     /**
@@ -87,5 +84,5 @@ var RobotApp = RobotApp || {};
     }
   }
 
-  RobotApp.Controller = Controller;
+  window.RobotController = RobotController;
 }
