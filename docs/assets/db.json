@@ -1,0 +1,70 @@
+{
+  "levels": [
+    {
+      "id": 1,
+      "title": "Introduction",
+      "board": [
+        "TT.F",
+        "T...",
+        "....",
+        "R..W"
+      ],
+      "robot": {
+        "x": 0,
+        "y": 0,
+        "dir": "up"
+      }
+    },
+    {
+      "id": 2,
+      "title": "Loops 1",
+      "board": [
+        "TFT",
+        "T.T",
+        "T.T",
+        "T.T",
+        "T.T",
+        "T.T",
+        "T.T",
+        "TRT"
+      ],
+      "robot": {
+        "x": 1,
+        "y": 0,
+        "dir": "up"
+      }
+    },
+    {
+      "id": 3,
+      "title": "Functions 1",
+      "board": [
+        ".....",
+        ".....",
+        "R...F",
+        ".AAA.",
+        "....."
+      ],
+      "robot": {
+        "x": 0,
+        "y": 2,
+        "dir": "right"
+      }
+    },
+    {
+      "id": 4,
+      "title": "Variables 3",
+      "board": [
+        "TTTT",
+        "RK.T",
+        "TTLT",
+        "WT.T",
+        "WTFT"
+      ],
+      "robot": {
+        "x": 0,
+        "y": 3,
+        "dir": "right"
+      }
+    }
+  ]
+}
