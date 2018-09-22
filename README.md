@@ -4,7 +4,7 @@
 
 This project was inspired by the [RoverJS](http://roverjs.com/) app developed by HYF teacher @joostlubach:
 
-> https://roverjs.com/ (alternative: http://roverjs.taalmap.nl/) 
+> https://roverjs.com/
 > 
 >_Hello! I'm Rover, I'm a robot. You can program me through JavaScript._
 >
